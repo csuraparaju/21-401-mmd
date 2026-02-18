@@ -21,8 +21,7 @@ from __future__ import annotations
 
 import torch
 
-# Default kernel implementation Kernels
-
+# Default kernel implementation 
 def gaussian_kernel(x_nd, y_md, sigma_sq):
     """
     K(x, y) = exp(-||x - y||^2 / (2 sigma^2))
@@ -36,7 +35,6 @@ def gaussian_kernel(x_nd, y_md, sigma_sq):
 
 
 # Default closed-form integrals and constants against target measures
-
 def gaussian_integral(x_nd, sigma_sq, target_var, d):
     """
     int K(x_i, y) dmu(y) for mu = N(0, target_var * I_d).
@@ -58,7 +56,6 @@ def gaussian_constant(sigma_sq, target_var, d):
 
 
 # MMD energy
-
 def mmd_energy(x_nd, kernel, integral, constant):
     """
     MMD^2 = constant - (2/n) sum_i int K(x_i, y) dmu(y) + (1/n^2) sum_{ij} K(x_i, x_j)
@@ -74,7 +71,6 @@ def mmd_energy(x_nd, kernel, integral, constant):
 
 
 # Training
-
 def run_mmd(kernel, integral, constant, *, n, d, lr, epochs):
     """
     Train n particles in R^d to minimise MMD^2 against a target.
